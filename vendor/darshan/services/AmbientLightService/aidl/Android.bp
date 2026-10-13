@@ -1,0 +1,14 @@
+aidl_interface {
+    name: "com.darshan.ambientlight",
+    srcs: [
+        "com/darshan/ambientlight/IAmbientLightService.aidl",
+        "com/darshan/ambientlight/IAmbientLightListener.aidl",
+    ],
+    stability: "vintf",
+    backend: {
+        java: {
+            enabled: true,
+            platform_apis: true,
+        },
+    },
+}
