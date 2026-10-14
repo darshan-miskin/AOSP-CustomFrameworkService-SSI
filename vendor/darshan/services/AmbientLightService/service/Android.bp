@@ -1,0 +1,9 @@
+java_library {
+    name: "com.darshan.ambientlight.service",
+    srcs: ["src/**/*.kt"],
+    system_ext_specific: true,
+    libs: [
+        "services",
+        "com.darshan.ambientlight-V1-java",
+    ],
+}
