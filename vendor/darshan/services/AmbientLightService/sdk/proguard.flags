@@ -1,0 +1,3 @@
+-keep class com.darshan.ambientlight.sdk.** { *; }
+-keep interface com.darshan.ambientlight.sdk.** { *; }
+-keep class com.darshan.ambientlight.** { *; }
