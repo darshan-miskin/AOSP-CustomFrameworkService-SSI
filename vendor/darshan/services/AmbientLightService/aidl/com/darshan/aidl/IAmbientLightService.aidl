@@ -1,7 +1,8 @@
-package android.os;
+package com.darshan.ambientlight;
 
-import android.os.IAmbientLightListener;
+import com.darshan.ambientlight.IAmbientLightListener;
 
+@VintfStability
 /** @hide */
 interface IAmbientLightService{
     int getLux();
