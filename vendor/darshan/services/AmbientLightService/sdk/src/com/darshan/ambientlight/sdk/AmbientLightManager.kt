@@ -77,7 +77,7 @@ class AmbientLightManager(private val context: Context) {
         private val executor: Executor,
         private val listener: AmbientLightListener
     ) : IAmbientLightListener.Stub() {
-        override fun onLuxChanged(lux: Float) {
+        override fun onLuxChanged(lux: Int) {
             executor.execute {
                 listener.onLuxChanged(lux)
             }
