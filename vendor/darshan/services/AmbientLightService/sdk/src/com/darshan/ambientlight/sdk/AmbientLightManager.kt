@@ -52,7 +52,7 @@ class AmbientLightManager(private val context: Context) {
 
             val transport = ListenerTransport(executor, listener)
             try {
-                service.registerListener(transport)
+                service.registerCallback(transport)
                 mListeners[listener] = transport
             } catch (e: RemoteException) {
                 Log.e(TAG, "Failed to register asynchronous listener", e)
@@ -66,7 +66,7 @@ class AmbientLightManager(private val context: Context) {
         synchronized(mListeners) {
             val transport = mListeners.remove(listener) ?: return
             try {
-                service.unregisterListener(transport)
+                service.unregisterCallback(transport)
             } catch (e: RemoteException) {
                 Log.e(TAG, "Failed to unregister asynchronous listener", e)
             }
