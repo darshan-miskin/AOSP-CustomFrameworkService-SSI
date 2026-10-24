@@ -6,3 +6,5 @@ PRODUCT_PACKAGE_OVERLAYS += \
 
 PRODUCT_SYSTEM_SERVER_JARS += \
     system_ext:com.darshan.server.ambientlight
+
+PRODUCT_STANDALONE_SYSTEM_SERVER_JARS += com.darshan.server.ambientlight
