@@ -7,13 +7,22 @@ private void startOtherServices(@NonNull TimingsTraceAndSlog t) {
       -------------------  Add the following code block --------------------
     */
   
-    try {
-          Slog.i("Darshan", "DEBUG: Attempting to start AmbientLightInitializer directly");
-          mSystemServiceManager.startService("com.darshan.server.ambientlight.AmbientLightInitializer");
-          Slog.i("Darshan", "DEBUG: Successfully initiated AmbientLightInitializer");
-    } catch (Throwable e) {
-        Slog.wtf("Darshan", "DEBUG: Failed to start AmbientLightInitializer", e);
+    t.traceBegin("StartDeviceSpecificServices: AmbientLight");
+    final String[] classes = mSystemContext.getResources().getStringArray(
+            R.array.config_deviceSpecificSystemServices);
+
+    Slog.i(TAG, "AmbientLight: DEBUG: Found " + (classes != null ? classes.length : 0) + " device-specific services.");
+    for (final String className : classes) {
+        Slog.i(TAG, "AmbientLight: DEBUG: Attempting to start -> " + className);
+        t.traceBegin("AmbientLight: StartDeviceSpecificServices " + className);
+        try {
+            mSystemServiceManager.startService(className);
+        } catch (Throwable e) {
+            reportWtf("AmbientLight: caught error " + className, e);
+        }
+        t.traceEnd();
     }
+    t.traceEnd();
   
    /**
       ------------------- code block --------------------
