@@ -1,0 +1,24 @@
+java_library {
+    name: "com.darshan.ambientlight.sdk",
+    srcs: [
+        "**/*.kt",
+    ],
+    aidl: {
+        local_include_dirs: ["."],
+    },
+    static_libs: [
+        "com.darshan.ambientlight-java",
+        "kotlin-stdlib",
+    ],
+    libs: [
+        "services.core",
+    ],
+    system_ext_specific: true,
+    platform_apis: true,
+    installable: true,
+
+    optimize: {
+        enabled: true,
+        proguard_flags_files: ["proguard.flags"],
+    },
+}

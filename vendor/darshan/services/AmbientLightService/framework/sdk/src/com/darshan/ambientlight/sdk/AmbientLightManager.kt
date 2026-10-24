@@ -9,13 +9,14 @@ import com.darshan.ambientlight.IAmbientLightListener
 import com.darshan.ambientlight.IAmbientLightService
 import java.util.concurrent.Executor
 
-class AmbientLightManager(private val context: Context) {
+class AmbientLightManager(context: Context) {
 
+    private val mContext: Context = context.applicationContext
     private var mService: IAmbientLightService? = null
     private val mListeners = HashMap<AmbientLightListener, ListenerTransport>()
 
     interface AmbientLightListener {
-        fun onLuxChanged(lux: Float)
+        fun onLuxChanged(lux: Int)
     }
 
     private val mDeathRecipient = IBinder.DeathRecipient {
@@ -35,13 +36,23 @@ class AmbientLightManager(private val context: Context) {
             try {
                 binder.linkToDeath(mDeathRecipient, 0)
                 mService = IAmbientLightService.Stub.asInterface(binder)
-            } catch (e: RemoteException) {
+            } catch(e: RemoteException) {
                 Log.e(TAG, "Failed to link DeathRecipient to binder", e)
             }
         } else {
             Log.e(TAG, "Failed to retrieve service binder for $TAG_SERVICE")
         }
         return mService
+    }
+
+    fun getLux(): Int {
+        val service = getService() ?: return 0
+        return try {
+            service.getLux()
+        } catch(e: RemoteException) {
+            Log.e(TAG, "Failed to get lux", e)
+            0
+        }
     }
 
     fun registerListener(executor: Executor, listener: AmbientLightListener) {
@@ -54,7 +65,7 @@ class AmbientLightManager(private val context: Context) {
             try {
                 service.registerCallback(transport)
                 mListeners[listener] = transport
-            } catch (e: RemoteException) {
+            } catch(e: RemoteException) {
                 Log.e(TAG, "Failed to register asynchronous listener", e)
             }
         }
@@ -67,7 +78,7 @@ class AmbientLightManager(private val context: Context) {
             val transport = mListeners.remove(listener) ?: return
             try {
                 service.unregisterCallback(transport)
-            } catch (e: RemoteException) {
+            } catch(e: RemoteException) {
                 Log.e(TAG, "Failed to unregister asynchronous listener", e)
             }
         }
@@ -77,15 +88,19 @@ class AmbientLightManager(private val context: Context) {
         private val executor: Executor,
         private val listener: AmbientLightListener
     ) : IAmbientLightListener.Stub() {
+
         override fun onLuxChanged(lux: Int) {
             executor.execute {
                 listener.onLuxChanged(lux)
             }
         }
+
+//        override fun getInterfaceVersion(): Int = IAmbientLightListener.VERSION
+//        override fun getInterfaceHash(): String = IAmbientLightListener.HASH
     }
 
     companion object {
-        private const val TAG = "AmbientLightManager"
+        private const val TAG = "AmbientLight Manager"
         private const val TAG_SERVICE = "ambient_light_service"
     }
 }

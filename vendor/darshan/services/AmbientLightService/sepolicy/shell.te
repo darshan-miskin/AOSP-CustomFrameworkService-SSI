@@ -1,0 +1,4 @@
+
+#allow shell system_server:binder { call transfer };
+
+allow shell ambient_light_service:service_manager find;

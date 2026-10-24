@@ -1,14 +1,22 @@
 aidl_interface {
     name: "com.darshan.ambientlight",
+    vendor_available: true,
+    system_ext_specific: true,
     srcs: [
         "com/darshan/ambientlight/IAmbientLightService.aidl",
         "com/darshan/ambientlight/IAmbientLightListener.aidl",
     ],
-    stability: "vintf",
+    unstable: true,
     backend: {
         java: {
             enabled: true,
             platform_apis: true,
+        },
+        cpp: {
+            enabled: false,
+        },
+        ndk: {
+            enabled: false,
         },
     },
 }

@@ -2,7 +2,6 @@ package com.darshan.ambientlight;
 
 import com.darshan.ambientlight.IAmbientLightListener;
 
-@VintfStability
 /** @hide */
 interface IAmbientLightService{
     int getLux();

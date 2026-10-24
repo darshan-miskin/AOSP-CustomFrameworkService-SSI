@@ -1,0 +1,9 @@
+type ambient_light_service, system_api_service, system_server_service, service_manager_type;
+
+allow system_server ambient_light_service:service_manager { add find };
+
+allow platform_app ambient_light_service:service_manager find;
+allow system_app ambient_light_service:service_manager find;
+
+allow shell ambient_light_service:service_manager find;
+allow dumpstate ambient_light_service:service_manager find;
