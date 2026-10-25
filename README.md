@@ -10,6 +10,8 @@
 [![Treble](https://img.shields.io/badge/Treble-Compliant-success)](https://source.android.com/docs/core/architecture/treble)
 [![SSI](https://img.shields.io/badge/SSI%2FGSI-Ready-blue)](https://source.android.com/docs/core/architecture/partitions/shared-system-image)
 
+https://github.com/user-attachments/assets/adf0741c-79ed-4168-9deb-88648b32439e
+
 ---
 
 ## 💡 Why This Project Exists
