@@ -12,7 +12,7 @@
 
 ---
 
-## Why This Project Exists
+## 💡 Why This Project Exists
 
 This repository demonstrates the **correct, modern way** to ship a custom framework service:
 
@@ -25,7 +25,7 @@ This repository demonstrates the **correct, modern way** to ship a custom framew
 
 ---
 
-## Architecture Overview
+## 🏗️ Architecture Overview
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -69,7 +69,7 @@ This repository demonstrates the **correct, modern way** to ship a custom framew
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### Key Design Decisions
+## 🎯 Key Design Decisions
 
 1. **`system_ext` placement** — The service, AIDL, and SDK are marked `system_ext_specific: true`. This keeps the pure AOSP `/system` image untouched.
 2. **Device-specific registration** — Instead of editing `SystemServer.java`, the service is started via the official `config_deviceSpecificSystemServices` overlay mechanism.
@@ -79,7 +79,7 @@ This repository demonstrates the **correct, modern way** to ship a custom framew
 
 ---
 
-## Repository Layout
+## 📂 Repository Layout
 
 ```
 device/darshan/
@@ -118,7 +118,7 @@ device/darshan/
 
 ---
 
-## Features
+## ✨ Features
 
 - Full Binder IPC with asynchronous callbacks (`RemoteCallbackList`)
 - Permission-protected API (`com.darshan.permission.ACCESS_AMBIENT_LIGHT`)
@@ -131,7 +131,7 @@ device/darshan/
 
 ---
 
-## Build & Run (Cuttlefish)
+## 🚀 Build & Run (Cuttlefish)
 
 ### 1. Prerequisites
 
@@ -173,7 +173,7 @@ scrcpy -s 127.0.0.1:6520
 
 ---
 
-## Verification
+## 🔍 Verification
 
 ### SELinux status
 ```bash
@@ -211,7 +211,7 @@ adb -s 127.0.0.1:6520 shell cmd ambient_light_service get
 
 ---
 
-## Using the SDK from an App
+## 📱 Using the SDK from an App
 
 ```kotlin
 val manager = AmbientLightManager(context)
@@ -230,7 +230,7 @@ manager.registerListener(executor) { newLux ->
 
 ---
 
-## SELinux Summary
+## 🛡️ SELinux Summary
 
 | Type                        | Domain          | Permission      |
 |-----------------------------|-----------------|-----------------|
@@ -243,7 +243,7 @@ Policies live under `system_ext` private sepolicy and are automatically included
 
 ---
 
-## Comparison with Classic Approach
+## ⚖️ Comparison with Classic Approach
 
 | Aspect                        | Classic (`frameworks/base`) | This Repo (SSI)          |
 |-------------------------------|-----------------------------|--------------------------|
@@ -257,13 +257,13 @@ Policies live under `system_ext` private sepolicy and are automatically included
 
 ---
 
-## Related Projects
+## 🔗 Related Projects
 
 - [AOSP-AmbientLight-SystemService](https://github.com/darshan-miskin/AOSP-AmbientLight-SystemService) — Classic (non-SSI) implementation that modifies `frameworks/base` directly. Useful for learning the internal Binder registration path.
 
 ---
 
-## License
+## 📄 License
 
 ```
 Copyright (C) 2025 Darshan Miskin
