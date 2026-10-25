@@ -6,7 +6,6 @@ aidl_interface {
         "com/darshan/ambientlight/IAmbientLightService.aidl",
         "com/darshan/ambientlight/IAmbientLightListener.aidl",
     ],
-    unstable: true,
     backend: {
         java: {
             enabled: true,
@@ -19,4 +18,11 @@ aidl_interface {
             enabled: false,
         },
     },
+    frozen: true,
+    versions_with_info: [
+        {
+            version: "1",
+            imports: [],
+        },
+    ],
 }

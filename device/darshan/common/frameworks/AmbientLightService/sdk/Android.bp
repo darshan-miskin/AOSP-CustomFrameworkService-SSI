@@ -7,7 +7,7 @@ java_library {
         local_include_dirs: ["."],
     },
     static_libs: [
-        "com.darshan.ambientlight-java",
+        "com.darshan.ambientlight-V1-java",
         "kotlin-stdlib",
     ],
     libs: [

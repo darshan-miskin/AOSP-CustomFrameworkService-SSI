@@ -95,6 +95,9 @@ class AmbientLightService(private val context: Context) : IAmbientLightService.S
             mListeners.finishBroadcast()
         }
     }
+    
+    override fun getInterfaceVersion() = IAmbientLightService.VERSION
+    override fun getInterfaceHash() = IAmbientLightService.HASH
 
     override fun dump(fd: FileDescriptor, args: Array<out String>?) {
         if (context.checkCallingOrSelfPermission(android.Manifest.permission.DUMP)
