@@ -1,6 +1,6 @@
 # AOSP Custom Framework System Service — SSI, GSI & Treble Compliant
 
-- An implementation of **Ambient Light Service** (`ambient_light_service`)  
+- An implementation of custom **Ambient Light Service** (`ambient_light_service`)  
 - A production-grade, modular custom system service that lives entirely outside `frameworks/base`.  
 - Fully compatible with **Shared System Image (SSI)**, **Generic System Image (GSI)**, and **Project Treble**.
 
