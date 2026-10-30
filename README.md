@@ -78,7 +78,7 @@ This repository demonstrates the **correct, modern way** to ship a custom framew
 1. **`system_ext` placement** — The service, AIDL, and SDK are marked `system_ext_specific: true`. This keeps the pure AOSP `/system` image untouched.
 2. **Device-specific registration** — Instead of editing `SystemServer.java`, the service is started via the official `config_deviceSpecificSystemServices` overlay mechanism.
 3. **Standalone SystemServer JAR** — The service is added through `PRODUCT_STANDALONE_SYSTEM_SERVER_JARS` + `PRODUCT_SYSTEM_SERVER_JARS`.
-4. **Stable AIDL** — Interface lives under `com.darshan.ambientlight` with proper Java backend generation.
+4. **Versioned AIDL** — Interface lives under `com.darshan.ambientlight` with proper Java backend generation.
 5. **Strict SELinux** — Custom service type `ambient_light_service` with minimal `find`/`add` permissions.
 
 ---
